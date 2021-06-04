@@ -2,12 +2,21 @@ import { Component } from 'react';
 import './App.css';
 import SearchBar from './components/SearchBar';
 import Table from './components/Table';
+import api from './util/API';
 
 class App extends Component {
   state = {
     users: [],
     input: ""
   };
+  componentDidMount() {
+    api.retrieveUsers().then(res => {
+      console.log(res);
+      this.setState({
+        users: res.data.results
+      })
+    })
+  }
   handleInputChange = event => {
     // Getting the value and name of the input which triggered the change
     let value = event.target.value;
@@ -23,7 +32,7 @@ class App extends Component {
     return (
       <div className="App" >
         < SearchBar handleInputChange={this.handleInputChange} ></SearchBar>
-        < Table></Table>
+        < Table users={this.state.users}></Table>
       </div>
     );
   }

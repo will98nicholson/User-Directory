@@ -1,5 +1,5 @@
 import Table from 'react-bootstrap/Table'
-export default function Usertable() {
+export default function Usertable(props) {
     return (
         <div>
             <Table striped bordered hover>
@@ -8,16 +8,16 @@ export default function Usertable() {
                         <th>#</th>
                         <th>First Name</th>
                         <th>Last Name</th>
-                        <th>Username</th>
+                        <th>Email</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>Mark</td>
-                        <td>Otto</td>
-                        <td>@mdo</td>
-                    </tr>
+                    {props.users.map(user => (<tr>
+                        <td>pic</td>
+                        <td>{user.name.first}</td>
+                        <td>{user.name.last}</td>
+                        <td>{user.email}</td>
+                    </tr>))}
 
                 </tbody>
             </Table>
