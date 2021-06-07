@@ -27,7 +27,26 @@ class App extends Component {
       [name]: value
     });
   };
-
+  searchUsers = () => [
+    api.retrieveUsers()
+      .then((res) => {
+        let filter = this.state.input
+        let narrowedSearch = res.data.results.filter(item => {
+          let data = Object.values(item.name.first).join("").toLowerCase();
+          return data.indexOf(filter.toLowerCase()) !== -1;
+        });
+        this.setState({
+          users: narrowedSearch
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  ]
+  handleInputChange = event => {
+    event.preventDefault();
+    this.searchUsers();
+  }
   render() {
     return (
       <div className="App" >
