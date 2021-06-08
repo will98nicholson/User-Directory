@@ -7,13 +7,13 @@ export default function Usertable(props) {
                     <tr>
                         <th>#</th>
                         <th>First Name</th>
-                        <th>Last Name</th>
+                        <th onClick={props.SortByName}>Last Name</th>
                         <th>Email</th>
                     </tr>
                 </thead>
                 <tbody>
                     {props.users.map(user => (<tr>
-                        <td>pic</td>
+                        <td><img src={user.picture.medium} alt='user' /></td>
                         <td>{user.name.first}</td>
                         <td>{user.name.last}</td>
                         <td>{user.email}</td>
