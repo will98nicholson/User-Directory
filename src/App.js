@@ -28,10 +28,6 @@ class App extends Component {
       [name]: value
     });
   };
-  handleFormSubmit = event => {
-    event.preventDefault();
-    this.searchMovies(this.state.input);
-  };
 
   searchUsers = () => [
     api.retrieveUsers()
@@ -53,12 +49,8 @@ class App extends Component {
     event.preventDefault();
     this.searchUsers();
   }
-  SortByName = event => {
-    function handleClick(event) {
-      event.preventDefault();
 
-    }
-  }
+
   render() {
     return (
       <div className="App" >
