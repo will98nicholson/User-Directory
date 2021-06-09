@@ -29,26 +29,26 @@ class App extends Component {
     });
   };
 
-  searchUsers = () => [
-    api.retrieveUsers()
-      .then((res) => {
-        let filter = this.state.input
-        let narrowedSearch = res.data.results.filter(item => {
-          let data = Object.values(item.name.first).join("").toLowerCase();
-          return data.indexOf(filter.toLowerCase()) !== -1;
-        });
-        this.setState({
-          users: narrowedSearch
-        })
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  ]
+  // filter data based on user's search
+  searchUsers = () => {
+    let typeName = this.state.users.filter((user) => {
+      return (
+        user.name.first.toLowerCase().includes(this.state.input.toLowerCase()) ||
+        user.name.last.toLowerCase().includes(this.state.input.toLowerCase()) ||
+        user.email.toLowerCase().includes(this.state.input.toLowerCase())
+      )
+    })
+    this.setState({ users: typeName })
+  };
+  // live update on page
   handleInputChange = event => {
     event.preventDefault();
-    this.searchUsers();
-  }
+    const value = event.target.value;
+    this.setState({ input: value }, () => {
+      this.searchUsers();
+    })
+
+  };
 
 
   render() {
