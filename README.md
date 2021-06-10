@@ -2,7 +2,7 @@
 
 
 ## Description
-This is a React application that allows users to search for specific employees from a large dataset
+This is a React application that allows users to live-search for specific employees from a large dataset
 returned by an API
 
 ### Technology Used
